@@ -20,76 +20,74 @@ int getRandom();
 int Print(Position);
 int deletAll(Position);
 
-int main(){
+int main() {
 
-    struct node headStack;
-    struct node headQueue;
-    int resualt = 0, choice = 0;
-    headQueue.next = NULL;
-    headStack.next = NULL;
-        
-    printf("Enter what you want to do:\n1.Push on the stack\n2.Pop from the stack\n3.Print stack\n4.Print Queue\n5.Push on the queue\n6.Pop from the queue\n");
-    do {
-        printf("Unesi 1,2,3,4,5 ili 6\n");
-        scanf(" %d", &choice);
-        if (choice < 1 || choice > 6) {
-            printf(" Netocan unos!!!\n");
-        }
-        else
-        {
-            switch (choice) {
-            case 1:
-                resualt = PushStack(&headStack, getRandom());
-                if (resualt == -2) {
-                    printf(" Greska.\n");
-                    deletAll(&headStack);
-                    deletAll(&headQueue);
-                    return ERRORMEMORY;
-                }
-                else {
-                    printf(" Sve je proslo u redu.\n");
-                }
-                break;
-            case 2:
-                resualt = Pop(&headStack);
-                break;
-            case 3:
-                printf("Stack is:");
-                Print(headStack.next);
-                break;
-            case 4:
-                printf("Queue is:");
-                Print(headQueue.next);
-                break;
-            case 5:
-                resualt = PushQueue(&headQueue, getRandom());
-                if (resualt == -2) {
-                    printf(" Greska.\n");
-                    deletAll(&headStack);
-                    deletAll(&headQueue);
-                    return ERRORMEMORY;
-                }
-                else {
-                    printf(" Sve je proslo u redu.\n");
-                }
-                break;
-            case 6:
-                resualt = Pop(&headQueue);
-                break;
-            }
-        }
-        printf("If you want to stop press -1, if you want to continue press 0!\n");
-        scanf(" %d", &choice);
-    } while (choice != -1);
-    deletAll(&headStack);
-    deletAll(&headQueue);
-    return 0;
+	struct node headStack;
+	struct node headQueue;
+	int resualt = 0, choice = 0;
+	headQueue.next = NULL;
+	headStack.next = NULL;
+	printf("Enter what you want to do:\n1.Push on the stack\n2.Pop from the stack\n3.Print stack\n4.Print Queue\n5.Push on the queue\n6.Pop from the queue\n");
+	do {
+		printf("Unesi 1,2,3,4,5 ili 6\n");
+		scanf(" %d", &choice);
+		if (choice < 1 || choice > 6) {
+			printf(" Netocan unos!!!\n");
+		}
+		else
+		{
+			switch (choice) {
+			case 1:
+				resualt = PushStack(&headStack, getRandom());
+				if (resualt == -2) {
+					printf(" Greska.\n");
+					deletAll(&headStack);
+					deletAll(&headQueue);
+					return ERRORMEMORY;
+				}
+				else {
+					printf(" Sve je proslo u redu.\n");
+				}
+				break;
+			case 2:
+				resualt = Pop(&headStack);
+				break;
+			case 3:
+				printf("Stack is:");
+				Print(headStack.next);
+				break;
+			case 4:
+				printf("Queue is:");
+				Print(headQueue.next);
+				break;
+			case 5:
+				resualt = PushQueue(&headQueue, getRandom());
+				if (resualt == -2) {
+					printf(" Greska.\n");
+					deletAll(&headStack);
+					deletAll(&headQueue);
+					return ERRORMEMORY;
+				}
+				else {
+					printf(" Sve je proslo u redu.\n");
+				}
+				break;
+			case 6:
+				resualt = Pop(&headQueue);
+				break;
+			}
+		}
+		printf("If you want to stop press -1, if you want to continue press 0!\n");
+		scanf(" %d", &choice);
+	} while (choice != -1);
+	deletAll(&headStack);
+	deletAll(&headQueue);
+	return 0;
 }
-
 int getRandom() {
 	int value = 0;
 	//srand((unsigned)time(NULL));
-    value = (rand() % (MAX - MIN + 1)) + MIN;
+	value = rand() % ((MAX - MIN + 1) + MIN);
 	return value;
 }
 int PushStack(Position P, int value) {
