@@ -255,20 +255,25 @@ int pushBefore(Position P, char lastName[]) {
 }
 
 int writeListToFile(Position P, char filename[]) {
-	FILE* fp = NULL;
-	fp = fopen(filename, "w");
-	P = P->next;
-	if (fp == NULL) {
-		printf("File not opened!!!");
-		return ERROR;
-	}
-	while (!feof(fp) && P != NULL) {
-		fprintf(fp, " %s %s %d\n", P->firstName, P->lastName, P->yearOfBirth);
-		P = P->next;
-	}
-	fclose(fp);
-	return 0;
+    FILE* fp = NULL;
+
+    fp = fopen(filename, "w");
+    if (fp == NULL) {
+        printf("File not opened!!!");
+        return ERROR;
+    }
+
+    P = P->next;
+
+    while (P != NULL) {
+        fprintf(fp, " %s %s %d\n", P->firstName, P->lastName, P->yearOfBirth);
+        P = P->next;
+    }
+
+    fclose(fp);
+    return 0;
 }
+
 int readFromFile(Position P, char fileName[]) {
 	FILE* fp = NULL;
 	Position Q = NULL;
