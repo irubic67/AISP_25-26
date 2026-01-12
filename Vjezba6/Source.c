@@ -27,9 +27,7 @@ int main(){
     int resualt = 0, choice = 0;
     headQueue.next = NULL;
     headStack.next = NULL;
-    
-    srand((unsigned)time(NULL));
-    
+        
     printf("Enter what you want to do:\n1.Push on the stack\n2.Pop from the stack\n3.Print stack\n4.Print Queue\n5.Push on the queue\n6.Pop from the queue\n");
     do {
         printf("Unesi 1,2,3,4,5 ili 6\n");
