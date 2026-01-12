@@ -24,10 +24,21 @@ int main() {
     struct node Head;
     Head.next = NULL;
 
-    if (calculate(&Head) == 0) {
-        printf("The result is: ");
-        Print(Head.next);
+    if (calculate(&Head) != 0) {   
+        deleteAll(&Head);
+        return -1;
     }
+
+    int numElements = Count(Head.next); 
+
+    if (numElements != 1) {
+        printf("Postfix is invalid! Stack contains %d elements.\n", numElements);
+        deleteAll(&Head);
+        return -1;
+    }
+
+    printf("The result is: ");
+    Print(Head.next);
 
     deleteAll(&Head);
     return 0;
